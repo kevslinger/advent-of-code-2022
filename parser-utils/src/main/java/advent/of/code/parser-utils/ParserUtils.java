@@ -11,6 +11,9 @@ import java.io.IOException;
 
 
 public class ParserUtils {
+    /**
+     * Read text into an ArrayList of Strings, where each line is its own element in the array.
+     */
     public static ArrayList<String> readIntoStringList(InputStream inputStream) {
         BufferedReader br;
         
@@ -34,6 +37,9 @@ public class ParserUtils {
         return lines; 
     }
 
+    /**
+     * Read text into a String list, but skip over the first set (i.e. start after the first blank line)
+     */
     public static ArrayList<String> readIntoStringListButSkipFirstSet(InputStream inputStream) {
         BufferedReader br;
         
@@ -61,6 +67,9 @@ public class ParserUtils {
         return lines; 
     }
 
+    /**
+     * Read several lines into an Integer FIFO Queue
+     */
     public static Queue<Integer> readIntoIntQueue(InputStream inputStream) {
         var calorieCounts = new PriorityQueue<Integer>();
 
@@ -88,5 +97,22 @@ public class ParserUtils {
             System.exit(9);
         }
         return calorieCounts;
+    }
+
+    /**
+     * Read in a single line
+     */
+    public static String readString(InputStream inputStream) {
+        String line = null;
+        BufferedReader br;
+        try {
+            br = new BufferedReader(new InputStreamReader(inputStream));
+            line = br.readLine();
+            return line;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(9);
+        }
+        return line;
     }
 }
