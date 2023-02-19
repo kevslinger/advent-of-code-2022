@@ -1,0 +1,12 @@
+plugins {
+    id 'advent.of.code.java-application-conventions'
+}
+
+dependencies {
+    implementation project(":parser-utils")
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'advent.of.code.day5.Day5'
+}
