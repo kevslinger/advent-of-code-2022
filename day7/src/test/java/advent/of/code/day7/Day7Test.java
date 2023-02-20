@@ -12,7 +12,6 @@ import static advent.of.code.parser_utils.ParserUtils.readIntoStringList;
 public class Day7Test {
     ArrayList<String> commands;
     DirectoryNode root;
-    InputStream stream;
 
     @BeforeEach
     public void setup() {

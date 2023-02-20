@@ -10,7 +10,6 @@ import static advent.of.code.parser_utils.ParserUtils.readString;
 
 public class Day6Test {
     String signals;
-    InputStream stream;
 
     @BeforeEach
     public void setup() {
