@@ -11,7 +11,7 @@ import static advent.of.code.parser_utils.ParserUtils.readIntoStringList;
 public class Day9Test {
     @Test
     public void testPart1() {
-        ArrayList<String> motions = motions = readIntoStringList(Day9Test.class.getResourceAsStream("/day9_test.txt"));
+        ArrayList<String> motions = readIntoStringList(Day9Test.class.getResourceAsStream("/day9_test.txt"));
         assertEquals(13, Day9.getUniquePositions(motions, 2).size());
     }
 
@@ -24,7 +24,6 @@ public class Day9Test {
     @Test
     public void testPart2big() {
         ArrayList<String> motions = motions = readIntoStringList(Day9Test.class.getResourceAsStream("/day9_test_big.txt"));
-        System.out.println(Day9.getUniquePositions(motions, 10));
         assertEquals(36, Day9.getUniquePositions(motions, 10).size());
     }
 }
