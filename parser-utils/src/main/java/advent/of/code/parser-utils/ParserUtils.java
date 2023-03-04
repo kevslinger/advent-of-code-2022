@@ -68,6 +68,34 @@ public class ParserUtils {
     }
 
     /**
+     * Read text into an ArrayList of Strings, where each line is its own element in the array.
+     */
+    public static ArrayList<String> readIntoStringListUntilEOF(InputStream inputStream) {
+        BufferedReader br;
+        
+        var lines = new ArrayList<String>();
+
+        try {
+            br = new BufferedReader(new InputStreamReader(inputStream));
+            String line = br.readLine();
+            while (line != null) {
+                if (line.length() >= 1) {
+                    lines.add(line);
+                }
+                line = br.readLine();
+                if (line == null) {
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(9);
+        }
+
+        return lines; 
+    }
+
+    /**
      * Read several lines into an Integer FIFO Queue
      */
     public static Queue<Integer> readIntoIntQueue(InputStream inputStream) {
