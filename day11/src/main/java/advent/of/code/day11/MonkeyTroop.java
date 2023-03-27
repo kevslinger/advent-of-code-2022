@@ -19,7 +19,6 @@ public class MonkeyTroop {
         int[] inspects = new int[monkeys.size()];
 
         for (int round = 0 ; round < rounds; round++) {
-            System.out.println("Round " + (round + 1));
             for (Monkey monkey: monkeys) {
                 int itemSize = monkey.startItems().size();
                 for (int i = 0; i < itemSize; i++) {

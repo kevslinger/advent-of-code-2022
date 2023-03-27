@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static advent.of.code.parser_utils.ParserUtils.readIntoStringList;
+import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 public class Day7Test {
     ArrayList<String> commands;
@@ -15,7 +15,7 @@ public class Day7Test {
 
     @BeforeEach
     public void setup() {
-        commands = readIntoStringList(Day7Test.class.getResourceAsStream("/day7_test.txt"));
+        commands = readIntoStringListUntilEOF(Day7Test.class.getResourceAsStream("/day7_test.txt"));
         root = Day7.readFileSystem(commands);
     }
 

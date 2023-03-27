@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static advent.of.code.parser_utils.ParserUtils.readIntoStringList;
+import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 public class Day4Test {
     ArrayList<String> sections;
 
     @BeforeEach
     public void setup() {
-        sections = readIntoStringList(Day4Test.class.getResourceAsStream("/day4_test.txt"));
+        sections = readIntoStringListUntilEOF(Day4Test.class.getResourceAsStream("/day4_test.txt"));
     }
 
     @Test

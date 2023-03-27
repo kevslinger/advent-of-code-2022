@@ -8,21 +8,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static advent.of.code.parser_utils.ParserUtils.readIntoStringList;
+import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilBlankLine;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListButSkipFirstSet;
 
 public class Day5Test {
-    ArrayList<String> sections;
     InputStream stream;
     ArrayList<String> raw_crates;
     ArrayList<String> instructions;
 
     @BeforeEach
     public void setup() {
-        sections = readIntoStringList(Day5Test.class.getResourceAsStream("/day5_test.txt"));
-
         stream = Day5Test.class.getResourceAsStream("/day5_test.txt");
-        raw_crates = readIntoStringList(stream); // goes until newline to separate crates and instruction
+        raw_crates = readIntoStringListUntilBlankLine(stream); // goes until newline to separate crates and instruction
         raw_crates.remove(raw_crates.size() - 1);
 
         stream = Day5.class.getResourceAsStream("/day5_test.txt");

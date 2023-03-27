@@ -4,12 +4,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.lang.Math;
 
-import static advent.of.code.parser_utils.ParserUtils.readIntoStringList;
+import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 public class Day7 {
     public static void main(String[] args) {
         InputStream stream = Day7.class.getResourceAsStream("/day7.txt");
-        ArrayList<String> commands = readIntoStringList(stream);
+        ArrayList<String> commands = readIntoStringListUntilEOF(stream);
 
         DirectoryNode root = readFileSystem(commands);
         System.out.println("The answer for part 1 is : " + getTotalSmallSizes(root));

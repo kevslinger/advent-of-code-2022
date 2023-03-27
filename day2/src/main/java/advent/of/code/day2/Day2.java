@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static advent.of.code.parser_utils.ParserUtils.readIntoStringList;
+import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 
 public class Day2 {
@@ -21,7 +21,7 @@ public class Day2 {
     private static final int LOSSPTS = 0;
 
     public static void main(String[] args) {
-        List<String> game = readIntoStringList(Day2.class.getResourceAsStream("/day2.txt"));
+        List<String> game = readIntoStringListUntilEOF(Day2.class.getResourceAsStream("/day2.txt"));
         int score = calculateScore(game);
         System.out.println("Score in part 1: " + score);
         int score2 = calculateScore(pickMoves(game));

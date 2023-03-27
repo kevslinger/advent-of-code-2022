@@ -13,8 +13,9 @@ import java.io.IOException;
 public class ParserUtils {
     /**
      * Read text into an ArrayList of Strings, where each line is its own element in the array.
+     * Stops at the first blank line
      */
-    public static ArrayList<String> readIntoStringList(InputStream inputStream) {
+    public static ArrayList<String> readIntoStringListUntilBlankLine(InputStream inputStream) {
         BufferedReader br;
         
         var lines = new ArrayList<String>();

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.lang.Math;
 
-import static advent.of.code.parser_utils.ParserUtils.readIntoStringList;
+import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 public class Day9 {
     public static void main(String[] args) {
         InputStream stream = Day9.class.getResourceAsStream("/day9.txt");
-        ArrayList<String> motions = readIntoStringList(stream);
+        ArrayList<String> motions = readIntoStringListUntilEOF(stream);
 
         // TODO: I could keep track of unique positions for all heads and then only need to run this simulation once.
         System.out.println("Answer to part 1: " + getUniquePositions(motions, 2).size());

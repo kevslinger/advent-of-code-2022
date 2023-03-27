@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static advent.of.code.parser_utils.ParserUtils.readIntoStringList;
+import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 public class Day8Test {
     ArrayList<String> trees;
@@ -14,7 +14,7 @@ public class Day8Test {
 
     @BeforeEach
     public void setup() {
-        trees = readIntoStringList(Day8Test.class.getResourceAsStream("/day8_test.txt"));
+        trees = readIntoStringListUntilEOF(Day8Test.class.getResourceAsStream("/day8_test.txt"));
         scenic = Day8.initialiseScenic(trees);
     }
 

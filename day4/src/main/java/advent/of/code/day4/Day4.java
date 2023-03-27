@@ -2,11 +2,11 @@ package advent.of.code.day4;
 
 import java.util.ArrayList;
 
-import static advent.of.code.parser_utils.ParserUtils.readIntoStringList;
+import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 public class Day4 {
     public static void main(String[] args) {
-        ArrayList<String> sections = readIntoStringList(Day4.class.getResourceAsStream("/day4.txt"));
+        ArrayList<String> sections = readIntoStringListUntilEOF(Day4.class.getResourceAsStream("/day4.txt"));
         int counter = 0, counter2 = 0;
         for (String elf: sections) {
             String[] elves = elf.split(",");
