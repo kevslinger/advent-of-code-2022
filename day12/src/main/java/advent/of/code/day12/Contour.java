@@ -1,8 +1,6 @@
 package advent.of.code.day12;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.lang.Math;
 
 
 class Contour {
