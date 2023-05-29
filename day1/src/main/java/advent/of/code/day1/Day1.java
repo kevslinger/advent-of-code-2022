@@ -1,11 +1,10 @@
 package advent.of.code.day1;
 
-import java.util.Collections;
 import java.util.Queue;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoIntQueue;
 
-public class Day1 {
+class Day1 {
     public static void main(String[] args) {
         Queue<Integer> calories = readIntoIntQueue(Day1.class.getResourceAsStream("/day1.txt"));
         int most = calories.poll();

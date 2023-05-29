@@ -8,23 +8,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-public class Day8Test {
+class Day8Test {
     ArrayList<String> trees;
     int[][] scenic;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         trees = readIntoStringListUntilEOF(Day8Test.class.getResourceAsStream("/day8_test.txt"));
         scenic = Day8.initialiseScenic(trees);
     }
 
     @Test
-    public void testPart1() {
+    void testPart1() {
         assertEquals(21, Day8.countVisibleTrees(scenic));
     }
 
     @Test 
-    public void testPart2() {
+    void testPart2() {
         assertEquals(8, Day8.countTotalScenicScore(scenic));
     }
 }

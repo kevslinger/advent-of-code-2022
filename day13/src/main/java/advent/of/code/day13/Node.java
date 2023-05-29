@@ -10,41 +10,37 @@ class Node {
     private boolean start;
     private boolean end;
 
-    public Node() {
-
-    }
-
-    public Node(Integer value) {
+    Node(Integer value) {
         this.value = value;
         start = false;
         end = false;
         next = null;
     }
 
-    public Node(boolean start, boolean end) {
+    Node(boolean start, boolean end) {
         this.start = start;
         this.end = end;
         value = null;
         next = null;
     }
 
-    public void setNext(Node next) {
+    void setNext(Node next) {
         this.next = next;
     }
 
-    public Node getNext() {
+    Node getNext() {
         return next;
     }
 
-    public Integer getValue() {
+    Integer getValue() {
         return value;
     }
 
-    public boolean isStart() {
+    boolean isStart() {
         return start;
     }
     
-    public boolean isEnd() {
+    boolean isEnd() {
         return end;
     }
 }

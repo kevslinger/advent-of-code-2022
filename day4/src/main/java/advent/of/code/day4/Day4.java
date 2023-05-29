@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-public class Day4 {
+class Day4 {
     public static void main(String[] args) {
         ArrayList<String> sections = readIntoStringListUntilEOF(Day4.class.getResourceAsStream("/day4.txt"));
         int counter = 0, counter2 = 0;

@@ -6,7 +6,7 @@ import java.lang.Math;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-public class Day7 {
+class Day7 {
     public static void main(String[] args) {
         InputStream stream = Day7.class.getResourceAsStream("/day7.txt");
         ArrayList<String> commands = readIntoStringListUntilEOF(stream);
@@ -19,7 +19,6 @@ public class Day7 {
 
         int sizeNeeded = 30000000 - sizeLeft;
         System.out.println("The answer for part 2 is : " + getDirToDeleteSize(root, sizeNeeded, rootSize));
-
     }
 
     static DirectoryNode readFileSystem(ArrayList<String> commands)  {

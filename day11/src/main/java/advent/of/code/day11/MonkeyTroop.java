@@ -4,18 +4,18 @@ import java.util.List;
 import java.util.ArrayList;
 import java.math.BigInteger;
 
-public class MonkeyTroop {
+class MonkeyTroop {
     private List<Monkey> monkeys;
 
-    public MonkeyTroop() {
+    MonkeyTroop() {
         monkeys = new ArrayList<Monkey>();
     }
 
-    public void addMonkey(Monkey monkey) {
+    void addMonkey(Monkey monkey) {
         monkeys.add(monkey);
     }
 
-    public int[] simulateMonkeys(int rounds, int worryDivider) {
+    int[] simulateMonkeys(int rounds, int worryDivider) {
         int[] inspects = new int[monkeys.size()];
 
         for (int round = 0 ; round < rounds; round++) {
@@ -37,7 +37,7 @@ public class MonkeyTroop {
         return inspects;
     }
 
-    public List<Monkey> getMonkeys() {
+    List<Monkey> getMonkeys() {
         return monkeys;
     }
 

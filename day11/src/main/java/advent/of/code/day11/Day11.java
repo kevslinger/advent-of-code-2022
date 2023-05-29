@@ -9,7 +9,7 @@ import java.math.BigInteger;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 // TODO: Is there a better way other than BigInteger? It takes a very long time to run.
-public class Day11 {
+class Day11 {
     public static void main(String[] args) {
         InputStream stream = Day11.class.getResourceAsStream("/day11.txt");
         ArrayList<String> monkeys = readIntoStringListUntilEOF(stream);
@@ -22,7 +22,7 @@ public class Day11 {
         System.out.println("Answer to part 2: " + inspections[inspections.length - 2] * inspections[inspections.length - 1]);
     }
 
-    public static MonkeyTroop createMonkeyTroop(ArrayList<String> monkeys) {
+    static MonkeyTroop createMonkeyTroop(ArrayList<String> monkeys) {
         MonkeyTroop monkeyTroop = new MonkeyTroop();
 
         // a Monkey is 6 lines

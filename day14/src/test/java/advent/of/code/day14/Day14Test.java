@@ -8,26 +8,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-public class Day14Test {
+class Day14Test {
     ArrayList<String> pathStrings;
     ArrayList<Path> paths;
     int[] dimensions;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         pathStrings = readIntoStringListUntilEOF(Day14Test.class.getResourceAsStream("/day14_test.txt"));
         paths = Day14.parsePaths(pathStrings);
         dimensions = Day14.getMatrixDims(paths);
     }
 
     @Test
-    public void testPart1() {
+    void testPart1() {
         int[][] maze = Day14.createMaze(dimensions[1] + 1, Math.max(dimensions[0], 500) + 1, paths, new Coordinate(500, 0));
         assertEquals(24, Day14.countSand(maze));
     }
 
     @Test
-    public void testPart2() {
+    void testPart2() {
         int[] dimensions = Day14.getMatrixDims(paths);
         // dimensions[1] is the max Y of the rocks
         // + 1 for 0-indexed array

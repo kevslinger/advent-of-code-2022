@@ -5,8 +5,7 @@ import java.util.ArrayList;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-
-public class Day12 {
+class Day12 {
     public static void main(String[] args) {
         InputStream stream = Day12.class.getResourceAsStream("/day12.txt");
         ArrayList<String> graph = readIntoStringListUntilEOF(stream);
@@ -18,7 +17,7 @@ public class Day12 {
         System.out.println("Answer to part 2: " + contour.getShortedDistanceBackwards(part2Function));
     }
 
-    public static Contour readGraph(ArrayList<String> graph) {
+    static Contour readGraph(ArrayList<String> graph) {
         int[][] map = new int[graph.size()][graph.get(0).length()];
         int startRow = 0, startCol = 0, endRow = 0, endCol = 0;
         for (int row = 0; row < graph.size(); row++) {

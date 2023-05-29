@@ -2,7 +2,7 @@ package advent.of.code.day7;
 
 import java.util.ArrayList;
 
-public class DirectoryNode {
+class DirectoryNode {
     private String name;
     private DirectoryNode parent;
     private ArrayList<DirectoryNode> childDirs;
@@ -46,8 +46,6 @@ public class DirectoryNode {
         }
         return size;
     }
-   
-   // Getters 
 
     public String getName() {
         return name;

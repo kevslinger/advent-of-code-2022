@@ -4,12 +4,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Stack;
-import java.lang.Math;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilBlankLine;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListButSkipFirstSet;
 
-public class Day5 {
+class Day5 {
     public static void main(String[] args) {
         InputStream stream = Day5.class.getResourceAsStream("/day5.txt");
         ArrayList<String> raw_crates = readIntoStringListUntilBlankLine(stream); // goes until newline to separate crates and instruction

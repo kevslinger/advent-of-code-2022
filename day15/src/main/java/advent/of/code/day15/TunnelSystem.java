@@ -2,12 +2,12 @@ package advent.of.code.day15;
 
 import java.util.ArrayList;
 
-public class TunnelSystem {
+class TunnelSystem {
     private ArrayList<Sensor> sensors;
     private int[] deadSpotGrid;
     private int[] adjustment;
 
-    public TunnelSystem(ArrayList<String> sensorStrings, int row) {
+    TunnelSystem(ArrayList<String> sensorStrings, int row) {
         sensors = Sensor.parseSensors(sensorStrings);
         // TODO: This loops over range 3 times, which is excessive.
         int[][] range = getSignalRangeArray(sensors);
@@ -70,7 +70,7 @@ public class TunnelSystem {
         return deadSpotGrid;
     }
 
-    public int countDeadSpots() {
+    int countDeadSpots() {
         int deadSpots = 0;
         for (int i = 0; i < deadSpotGrid.length; i++) {
             if (deadSpotGrid[i] == 9) {
@@ -80,7 +80,7 @@ public class TunnelSystem {
         return deadSpots;
     }
 
-    public int findDistressBeacon(int minVal, int maxVal) {
+    int findDistressBeacon(int minVal, int maxVal) {
         for (int i = minVal; i <= maxVal; i++) {
             if (deadSpotGrid[i + adjustment[1]] == 0) {
                 return i;

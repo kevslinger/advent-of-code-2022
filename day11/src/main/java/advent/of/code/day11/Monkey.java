@@ -11,7 +11,7 @@ import java.math.BigInteger;
  * int trueMonkey: the monkey to throw the item to if the test is true
  * int falseMonkey: the monkey to throw the item to if the test is false 
 */
-public record Monkey (
+record Monkey (
     int id, LinkedList<BigInteger> startItems, MonkeyOp operation, int test, int trueMonkey, int falseMonkey
 ) {
     public String toString() {

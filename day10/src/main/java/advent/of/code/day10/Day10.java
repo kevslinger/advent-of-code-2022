@@ -1,14 +1,11 @@
 package advent.of.code.day10;
 
 import java.io.InputStream;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.lang.Math;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-public class Day10 {
+class Day10 {
     public static void main(String[] args) {
         InputStream stream = Day10.class.getResourceAsStream("/day10.txt");
         ArrayList<String> instructions = readIntoStringListUntilEOF(stream);

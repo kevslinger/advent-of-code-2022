@@ -1,11 +1,10 @@
 package advent.of.code.day13;
 
-
 class Packet {
     private Node packet;
     private String str;
 
-    public Packet(String str) {
+    Packet(String str) {
         this.str = str;
         packet = initializePacket(str);
     }
@@ -59,7 +58,7 @@ class Packet {
         return root;
     }
 
-    public boolean isInOrder(Packet rightPacket) {
+    boolean isInOrder(Packet rightPacket) {
         var leftDummy = packet;
         var rightDummy = rightPacket.getPacket();
 
@@ -109,7 +108,7 @@ class Packet {
         return true;
     }
 
-    public Node getPacket() {
+    Node getPacket() {
         return packet;
     }
 

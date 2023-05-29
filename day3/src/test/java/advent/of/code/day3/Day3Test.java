@@ -12,12 +12,12 @@ public class Day3Test {
     ArrayList<String> rucksacks;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         rucksacks = readIntoStringListUntilEOF(Day3Test.class.getResourceAsStream("/day3_test.txt"));
     }
 
     @Test
-    public void testPart1() {
+    void testPart1() {
         int prioritySum = 0;
         for (String rucksack: rucksacks) {
             prioritySum += Day3.getPriority(Day3.getDuplicate(rucksack));
@@ -26,7 +26,7 @@ public class Day3Test {
     }
 
     @Test
-    public void testPart2() {
+    void testPart2() {
         int prioritySum = 0;
         String sack1 = null, sack2 = null;
         for (int i = 0; i < rucksacks.size(); i++) {

@@ -7,7 +7,7 @@ import java.lang.Math;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-public class Day8 {
+class Day8 {
     public static void main(String[] args) {
         InputStream stream = Day8.class.getResourceAsStream("/day8.txt");
         ArrayList<String> trees = readIntoStringListUntilEOF(stream);

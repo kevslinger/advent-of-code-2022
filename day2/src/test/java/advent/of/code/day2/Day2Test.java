@@ -8,21 +8,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-public class Day2Test {
+class Day2Test {
     private List<String> game;
     
     @BeforeEach
-    public void setup() {
+    void setup() {
         game = readIntoStringListUntilEOF(Day2Test.class.getResourceAsStream("/day2_test.txt"));
     }
 
     @Test
-    public void testPart1() {
+    void testPart1() {
         assertEquals(15, Day2.calculateScore(game));
     }
 
     @Test
-    public void testPart2() {
+    void testPart2() {
         assertEquals(12, Day2.calculateScore(Day2.pickMoves(game)));
     }
 }

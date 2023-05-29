@@ -2,19 +2,17 @@ package advent.of.code.day6;
 
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Queue;
 import java.util.LinkedList;
 
 import static advent.of.code.parser_utils.ParserUtils.readString;
 
-public class Day6 {
+class Day6 {
     public static void main(String[] args) {
         InputStream stream = Day6.class.getResourceAsStream("/day6.txt");
         String signals = readString(stream);
 
         System.out.println("Answer to part 1: " + getCharsUntilStart(signals, 4));
         System.out.println("Answer to part 2: " + getCharsUntilStart(signals, 14));
-
     }
 
     static int getCharsUntilStart(String signals, int bufferSize) {
@@ -43,5 +41,4 @@ public class Day6 {
         }
         return -1;
     }
-    
 }

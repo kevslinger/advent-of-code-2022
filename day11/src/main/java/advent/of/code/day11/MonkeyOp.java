@@ -2,14 +2,14 @@ package advent.of.code.day11;
 
 import java.math.BigInteger;
 
-public class MonkeyOp {
+class MonkeyOp {
     private String[] operation;
 
-    public MonkeyOp(String operation) {
+    MonkeyOp(String operation) {
         this.operation = operation.strip().split(" ");
     }
 
-    public BigInteger performOp(BigInteger old) {
+    BigInteger performOp(BigInteger old) {
         // first 3 are op: new = 
         BigInteger out;
         // Assume there is only one operation

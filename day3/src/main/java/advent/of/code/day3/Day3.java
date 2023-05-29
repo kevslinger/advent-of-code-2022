@@ -1,13 +1,12 @@
 package advent.of.code.day3;
 
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-public class Day3 {
+class Day3 {
     public static void main(String[] args) {
         ArrayList<String> rucksacks = readIntoStringListUntilEOF(Day3.class.getResourceAsStream("/day3.txt"));
         int prioritySum = 0;

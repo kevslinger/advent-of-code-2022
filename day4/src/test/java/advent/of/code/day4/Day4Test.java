@@ -8,16 +8,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-public class Day4Test {
+class Day4Test {
     ArrayList<String> sections;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         sections = readIntoStringListUntilEOF(Day4Test.class.getResourceAsStream("/day4_test.txt"));
     }
 
     @Test
-    public void testPart1() {
+    void testPart1() {
         int counter = 0;
         for (String elf: sections) {
             String[] elves = elf.split(",");
@@ -27,7 +27,7 @@ public class Day4Test {
     }
 
     @Test 
-    public void testPart2() {
+    void testPart2() {
         int counter = 0;
         for (String elf: sections) {
             String[] elves = elf.split(",");

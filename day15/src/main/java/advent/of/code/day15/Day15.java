@@ -10,12 +10,11 @@ import java.util.concurrent.Executors;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-
-public class Day15 implements Runnable{
+class Day15 implements Runnable{
     private int multiplier;
     private ArrayList<String> sensorString;
 
-    public Day15(int multiplier, ArrayList<String> sensorString) {
+    Day15(int multiplier, ArrayList<String> sensorString) {
         this.multiplier = multiplier;
         this.sensorString = sensorString;
     }

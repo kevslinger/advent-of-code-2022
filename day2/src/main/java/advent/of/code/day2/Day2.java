@@ -2,12 +2,10 @@ package advent.of.code.day2;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-
-public class Day2 {
+class Day2 {
     private static final String OPPONENT_ROCK = "A";
     private static final String OPPONENT_PAPER = "B";
     private static final String OPPONENT_SCISSORS = "C";

@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilBlankLine;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListButSkipFirstSet;
 
-public class Day5Test {
+class Day5Test {
     InputStream stream;
     ArrayList<String> raw_crates;
     ArrayList<String> instructions;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         stream = Day5Test.class.getResourceAsStream("/day5_test.txt");
         raw_crates = readIntoStringListUntilBlankLine(stream); // goes until newline to separate crates and instruction
         raw_crates.remove(raw_crates.size() - 1);
@@ -27,7 +27,7 @@ public class Day5Test {
     }
 
     @Test
-    public void testPart1() {
+    void testPart1() {
         ArrayList<LinkedList<Character>> crates = Day5.followInstructions(Day5.parseRawCrates(raw_crates), instructions);
 
         var str = new StringBuilder();
@@ -40,7 +40,7 @@ public class Day5Test {
     }
 
     @Test 
-    public void testPart2() {
+    void testPart2() {
         ArrayList<LinkedList<Character>> crates = Day5.followInstructionsPart2(Day5.parseRawCrates(raw_crates), instructions);
         var str = new StringBuilder();
         for (int i = 0; i < crates.size(); i++) {

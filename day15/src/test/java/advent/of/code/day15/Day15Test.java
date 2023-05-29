@@ -8,23 +8,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-public class Day15Test {
+class Day15Test {
     ArrayList<String> sensorStrings;
     private TunnelSystem tunnels;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         sensorStrings = readIntoStringListUntilEOF(Day15Test.class.getResourceAsStream("/day15_test.txt"));
         tunnels = new TunnelSystem(sensorStrings, 10);
     }
 
     @Test
-    public void testPart1() {
+    void testPart1() {
         assertEquals(26, tunnels.countDeadSpots());
     }
 
     @Test
-    public void testPart2() {
+    void testPart2() {
         int frequency = -1;
         int x;
         int minVal = 0;

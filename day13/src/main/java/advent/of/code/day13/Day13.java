@@ -6,8 +6,7 @@ import java.util.ArrayList;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-
-public class Day13 {
+class Day13 {
     public static void main(String[] args) {
         InputStream stream = Day13.class.getResourceAsStream("/day13.txt");
         ArrayList<String> packetStrings = readIntoStringListUntilEOF(stream);

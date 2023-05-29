@@ -2,7 +2,6 @@ package advent.of.code.day12;
 
 import java.util.LinkedList;
 
-
 class Contour {
     private int startRow;
     private int startCol;
@@ -13,7 +12,7 @@ class Contour {
     private int[] deltaRow = new int[] {-1, 0, 1, 0};
     private int[] deltaCol = new int[] {0, -1, 0, 1};
 
-    public Contour(int[][] map, int startRow, int startCol, int endRow, int endCol) {
+    Contour(int[][] map, int startRow, int startCol, int endRow, int endCol) {
         this.map = map;
         this.startRow = startRow;
         this.startCol = startCol;
@@ -26,7 +25,7 @@ class Contour {
      * Requires a visited matrix as well as a FIFO queue to store neighbours.
      * Returns the shortest distance  
      */
-    public int getShortedDistanceBackwards(FunctionalInterface checker) {
+    int getShortedDistanceBackwards(FunctionalInterface checker) {
         var visited = new boolean[map.length][map[0].length];
         var queue = new LinkedList<Coordinate>();
         queue.offerLast(new Coordinate(endRow, endCol));
@@ -61,19 +60,19 @@ class Contour {
         return newRow >= 0 && newRow < map.length && newCol >= 0 && newCol < map[newRow].length && map[oldRow][oldCol] - 1 <= map[newRow][newCol];
     }
 
-    public int getStartRow() {
+    int getStartRow() {
         return startRow;
     }
-    public int getStartCol() {
+    int getStartCol() {
         return startCol;
     }
-    public int getEndRow() {
+    int getEndRow() {
         return endRow;
     }
-    public int getEndCol() {
+    int getEndCol() {
         return endCol;
     }
-    public int[][] getMap() {
+    int[][] getMap() {
         return map;
     }
 }

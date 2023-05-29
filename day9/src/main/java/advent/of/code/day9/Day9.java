@@ -8,7 +8,7 @@ import java.lang.Math;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-public class Day9 {
+class Day9 {
     public static void main(String[] args) {
         InputStream stream = Day9.class.getResourceAsStream("/day9.txt");
         ArrayList<String> motions = readIntoStringListUntilEOF(stream);

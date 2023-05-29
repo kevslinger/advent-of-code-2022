@@ -5,32 +5,32 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Sensor {
+class Sensor {
     private Coordinate sensorCoordinate;
     private Coordinate beaconCoordinate;
 
-    public Sensor(Coordinate sensorCoordinate, Coordinate beaconCoordinate) {
+    Sensor(Coordinate sensorCoordinate, Coordinate beaconCoordinate) {
         this.sensorCoordinate = sensorCoordinate;
         this.beaconCoordinate = beaconCoordinate;
     }
 
-    public Coordinate getSensorCoordinate() {
+    Coordinate getSensorCoordinate() {
         return sensorCoordinate;
     }
 
-    public Coordinate getBeaconCoordinate() {
+    Coordinate getBeaconCoordinate() {
         return beaconCoordinate;
     }
 
-    public static int getDistance(Coordinate a, Coordinate b) {
+    static int getDistance(Coordinate a, Coordinate b) {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 
-    public int getDistance() {
+    int getDistance() {
         return Sensor.getDistance(sensorCoordinate, beaconCoordinate);
     }
 
-    public int[] getSignalRange() {
+    int[] getSignalRange() {
         int[] range = new int[4];
         int distance = Sensor.getDistance(sensorCoordinate, beaconCoordinate);
         range[0] = sensorCoordinate.x() - distance;
@@ -40,7 +40,7 @@ public class Sensor {
         return range;
     }
 
-    public static ArrayList<Sensor> parseSensors(ArrayList<String> sensorStrings) {
+    static ArrayList<Sensor> parseSensors(ArrayList<String> sensorStrings) {
         var sensors = new ArrayList<Sensor>();
         String regex = "x=(-?[0-9]+), y=(-?[0-9]+)";
         Pattern pattern = Pattern.compile(regex);
