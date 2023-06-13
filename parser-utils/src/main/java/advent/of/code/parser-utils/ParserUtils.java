@@ -129,6 +129,38 @@ public class ParserUtils {
     }
 
     /**
+     * Read input string into a List of integer arrays.
+     * Assumes the integer arrays are comma-separated.
+     */
+    public static ArrayList<int[]> readIntoIntArrayList(InputStream inputStream) {
+        var intList = new ArrayList<int[]>();
+        String line = null;
+        BufferedReader br;
+        try {
+            br = new BufferedReader(new InputStreamReader(inputStream));
+            line = br.readLine();
+            while (line != null) {
+                if (line.length() >= 1) {
+                    String[] toks = line.split(",");
+                    var arr = new int[toks.length];
+                    for (int i = 0; i < toks.length; i++) {
+                        arr[i] = Integer.parseInt(toks[i]);
+                    }
+                    intList.add(arr);
+                }
+                line = br.readLine();
+                if (line == null) {
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(9);
+        }
+        return intList;
+    }
+
+    /**
      * Read in a single line
      */
     public static String readString(InputStream inputStream) {
