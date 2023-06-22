@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static advent.of.code.parser_utils.ParserUtils.readIntoIntQueue;
+import static advent.of.code.parser_utils.ParserUtils.readIntoCalorieQueue;
 
 
 class TestDay1 {
@@ -14,7 +14,7 @@ class TestDay1 {
 
     @BeforeEach
     void setup() {
-        calories = readIntoIntQueue(TestDay1.class.getResourceAsStream("/day1_test.txt"));
+        calories = readIntoCalorieQueue(TestDay1.class.getResourceAsStream("/day1_test.txt"));
     }
 
     @Test

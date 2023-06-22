@@ -2,6 +2,7 @@ package advent.of.code.parser_utils;
 
 import java.util.Queue;
 import java.util.PriorityQueue;
+import java.util.LinkedList;
 import java.util.ArrayList;
 
 import java.io.BufferedReader;
@@ -100,6 +101,36 @@ public class ParserUtils {
      * Read several lines into an Integer FIFO Queue
      */
     public static Queue<Integer> readIntoIntQueue(InputStream inputStream) {
+        var intQueue = new LinkedList<Integer>();
+
+        BufferedReader br;
+        try {
+            br = new BufferedReader(new InputStreamReader(inputStream));
+            int value;
+            String line = br.readLine();
+            while (line != null) {
+                while (line.length() > 0) {
+                    intQueue.offer(Integer.parseInt(line));
+                    line = br.readLine();
+                    if (line == null) {
+                        break;
+                    }
+                }
+                if (line != null) {
+                    line = br.readLine();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(9);
+        }
+        return intQueue;
+    }
+
+    /**
+     * Read Calories in for Part 1
+     */
+    public static Queue<Integer> readIntoCalorieQueue(InputStream inputStream) {
         var calorieCounts = new PriorityQueue<Integer>();
 
         BufferedReader br;
