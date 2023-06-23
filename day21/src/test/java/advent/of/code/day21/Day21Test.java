@@ -25,4 +25,10 @@ class Day21Test {
         HashMap<String, BigInteger> monkeyMap = Day21.createMonkeyHashMap(monkeyYells);
         assertEquals(152, monkeyMap.get("root").intValue());
     }
+
+    @Test
+    void testPart2() {
+        HashMap<String, BigInteger> monkeyResultMap = Day21.createMonkeyHashMapPart2(monkeyYells);
+        assertEquals(301, monkeyResultMap.get(Day21.OURNAME).intValue());
+    }
 }
