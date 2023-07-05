@@ -2,13 +2,8 @@ package advent.of.code.day23;
 
 
 class Elf {
-    //private isEmpty; TODO:
     private Coordinate oldLoc;
     private int proposalDir;
-
-    /*Elf(boolean isEmpty) {
-        this.isEmpty = isEmpty;
-    }*/
 
     Elf(Coordinate loc) {
         oldLoc = loc;
@@ -30,5 +25,4 @@ class Elf {
     void setProposalDir(int newProposal) {
         proposalDir = newProposal;
     }
-
 }
