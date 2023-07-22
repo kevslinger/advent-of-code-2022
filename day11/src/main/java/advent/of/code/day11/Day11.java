@@ -4,21 +4,23 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Arrays;
-import java.math.BigInteger;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
-// TODO: Is there a better way other than BigInteger? It takes a very long time to run.
 class Day11 {
     public static void main(String[] args) {
         InputStream stream = Day11.class.getResourceAsStream("/day11.txt");
         ArrayList<String> monkeys = readIntoStringListUntilEOF(stream);
         MonkeyTroop monkeyTroop = createMonkeyTroop(monkeys);
 
-        int[] inspections = monkeyTroop.simulateMonkeys(20, 3);
+        long[] inspections = monkeyTroop.simulateMonkeys(20, 3);
         Arrays.sort(inspections);
         System.out.println("Answer to part 1: " + inspections[inspections.length - 2] * inspections[inspections.length - 1]);
+        
+        // Need to reset the monkey troop.
+        monkeyTroop = createMonkeyTroop(monkeys);
         inspections = monkeyTroop.simulateMonkeys(10000, 1);
+        Arrays.sort(inspections);
         System.out.println("Answer to part 2: " + inspections[inspections.length - 2] * inspections[inspections.length - 1]);
     }
 
@@ -39,9 +41,9 @@ class Day11 {
             int monkeyId = Integer.parseInt(monkeyIdToks[1].substring(0, monkeyIdToks[1].length() - 1));
             // Starting items
             String[] monkeyStartingItemsToks = monkeys.get(idx++).replaceAll("\\s+", "").split(":")[1].split(","); 
-            var startingItems = new LinkedList<BigInteger>();
+            var startingItems = new LinkedList<Long>();
             for (String item : monkeyStartingItemsToks) {
-                startingItems.add(new BigInteger(item));
+                startingItems.add(Long.parseLong(item));
             }
             // Operation
             MonkeyOp operation = new MonkeyOp(monkeys.get(idx++));

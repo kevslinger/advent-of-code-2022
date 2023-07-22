@@ -2,7 +2,6 @@ package advent.of.code.day11;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.math.BigInteger;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,15 +21,15 @@ class Day11Test {
 
     @Test
     void testPart1() {
-        int[] inspections = monkeyTroop.simulateMonkeys(20, 3);
+        long[] inspections = monkeyTroop.simulateMonkeys(20, 3);
         Arrays.sort(inspections);
         assertEquals(10605, inspections[inspections.length - 2] * inspections[inspections.length - 1]);
     }
 
-    // @Test 
-    // public void testPart2() {
-    //     int[] inspections = monkeyTroop.simulateMonkeys(10000, 1);
-    //     Arrays.sort(inspections);
-    //     assertEquals(new BigInteger("2713310158"), BigInteger.valueOf(inspections[inspections.length - 2]).multiply(BigInteger.valueOf(inspections[inspections.length - 1])));
-    // }
+    @Test 
+    public void testPart2() {
+        long[] inspections = monkeyTroop.simulateMonkeys(10000, 1);
+        Arrays.sort(inspections);
+        assertEquals(2713310158L, inspections[inspections.length - 2] * inspections[inspections.length - 1]);
+    }
 }
