@@ -15,27 +15,17 @@ class Day15Test {
     @BeforeEach
     void setup() {
         sensorStrings = readIntoStringListUntilEOF(Day15Test.class.getResourceAsStream("/day15_test.txt"));
-        tunnels = new TunnelSystem(sensorStrings, 10);
+        tunnels = new TunnelSystem(sensorStrings);
     }
 
     @Test
     void testPart1() {
+        tunnels.fillDeadSpotGrid(10);
         assertEquals(26, tunnels.countDeadSpots());
     }
 
     @Test
     void testPart2() {
-        int frequency = -1;
-        int x;
-        int minVal = 0;
-        int maxVal = 20;
-        for (int i = minVal; i <= maxVal; i++) {
-            tunnels = new TunnelSystem(sensorStrings, i);
-            x = tunnels.findDistressBeacon(minVal, maxVal);
-            if (x != -1) {
-                frequency = x * 4000000 + i;
-            }
-        }
-        assertEquals(56000011, frequency);
+        assertEquals(56000011, tunnels.getSpotWhereBeaconCantBe(20));
     }
 }
