@@ -6,6 +6,6 @@ Join me as I journey through, solving each day's challenge in Java!
 The code for each day's challenge is in the respective folder. 
 Code for each day is self-contained other than the `parser-utils` module, which contains parsing functions commonly used across days.
 
-Current progress: 37 stars out of 50 (74%) (pending Days 16 part 2, 17, 19, 20, 22 part 2, 23 part 2, 24, and 25 part 2)
+Current progress: 38 stars out of 50 (76%) (pending Days 16 part 2, 17, 19, 20, 22 part 2, 24, and 25 part 2)
 
 :star: :star: :star: :star: :star: :star: :star: :black_square_button: :black_square_button: :black_square_button:

@@ -21,8 +21,8 @@ class Day23Test {
         assertEquals(110, Day23.computePart1(Day23.runSimulation(elfGrid)));
     }
 
-    // @Test
-    // void testPart2() {
-    //     assertEquals(20, Day23.computePart2(elfGrid));
-    // }
+    @Test
+    void testPart2() {
+        assertEquals(20, Day23.computePart2(elfGrid));
+    }
 }

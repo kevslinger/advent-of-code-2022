@@ -13,8 +13,10 @@ class Day23 {
         ArrayList<String> gridLines = readIntoStringListUntilEOF(InputStream);
         Elf[][] elfGrid = convertToElfGrid(gridLines);
 
-        System.out.println("The answer to part 1 is " + computePart1(runSimulation(elfGrid.clone())));
-        //System.out.println("The answer to part 2 is " + computePart2(elfGrid));
+        System.out.println("The answer to part 1 is " + computePart1(runSimulation(elfGrid)));
+        // TODO: Create a new copy of the elf grid
+        elfGrid = convertToElfGrid(gridLines);
+        System.out.println("The answer to part 2 is " + computePart2(elfGrid));
 
     }
 
@@ -184,40 +186,40 @@ class Day23 {
         return directionList;
     }
 
-    // static int computePart2(Elf[][] elfGrid) {
-    //     ArrayList<ArrayList<Coordinate>> directions = getDirections();
-    //     // TODO: There is a world where 2 elves would *want* to move but 
-    //     // do not because their proposed locations collide.
-    //     // However I am going to let this run until no elf proposes to move
-    //     int rounds = 0;
-    //     ArrayList<Elf> elves = getElves(elfGrid);
-    //     boolean proposedMovement;
-    //     do {
-    //         proposedMovement = false;
-    //         elfGrid = runProposalPhase(elfGrid, directions);
-    //         for (Elf elf: elves) {
-    //             if (elf.getProposalDir() != -1) {
-    //                 proposedMovement = true;
-    //                 break; // As long as one elf proposes movement, we continue the simulation.
-    //             }
-    //         }
-    //         elfGrid = runMovementPhase(elfGrid, directions);
-    //         // Update the directions list order
-    //         directions.add(directions.remove(0));
-    //         rounds++;
-    //     } while (proposedMovement);
-    //     return rounds;
-    // }
+    static int computePart2(Elf[][] elfGrid) {
+        ArrayList<ArrayList<Coordinate>> directions = getDirections();
+        // TODO: There is a world where 2 elves would *want* to move but 
+        // do not because their proposed locations collide.
+        // However I am going to let this run until no elf proposes to move
+        int rounds = 0;
+        ArrayList<Elf> elves = getElves(elfGrid);
+        boolean proposedMovement;
+        do {
+            proposedMovement = false;
+            elfGrid = runProposalPhase(elfGrid, directions);
+            for (Elf elf: elves) {
+                if (elf.getProposalDir() != -1) {
+                    proposedMovement = true;
+                    break; // As long as one elf proposes movement, we continue the simulation.
+                }
+            }
+            elfGrid = runMovementPhase(elfGrid, directions);
+            // Update the directions list order
+            directions.add(directions.remove(0));
+            rounds++;
+        } while (proposedMovement);
+        return rounds;
+    }
 
-    // private static ArrayList<Elf> getElves(Elf[][] elfGrid) {
-    //     var elves = new ArrayList<Elf>();
-    //     for (int i = 0; i < elfGrid.length; i++) {
-    //         for (int j = 0; j < elfGrid[0].length; j++) {
-    //             if (elfGrid[i][j] != null) {
-    //                 elves.add(elfGrid[i][j]);
-    //             }
-    //         }
-    //     }
-    //     return elves;
-    // }
+    private static ArrayList<Elf> getElves(Elf[][] elfGrid) {
+        var elves = new ArrayList<Elf>();
+        for (int i = 0; i < elfGrid.length; i++) {
+            for (int j = 0; j < elfGrid[0].length; j++) {
+                if (elfGrid[i][j] != null) {
+                    elves.add(elfGrid[i][j]);
+                }
+            }
+        }
+        return elves;
+    }
 }
