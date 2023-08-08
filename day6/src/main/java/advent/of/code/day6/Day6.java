@@ -1,15 +1,17 @@
 package advent.of.code.day6;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readString;
 
 class Day6 {
     public static void main(String[] args) {
-        InputStream stream = Day6.class.getResourceAsStream("/day6.txt");
-        String signals = readString(stream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day6.txt");
+        String signals = readString(path);
 
         System.out.println("Answer to part 1: " + getCharsUntilStart(signals, 4));
         System.out.println("Answer to part 2: " + getCharsUntilStart(signals, 14));

@@ -1,5 +1,6 @@
 package advent.of.code.day11;
 
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day11Test {
@@ -15,7 +17,7 @@ class Day11Test {
 
     @BeforeEach
     void setup() {
-        monkeys = readIntoStringListUntilEOF(Day11Test.class.getResourceAsStream("/day11_test.txt"));
+        monkeys = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day11_test.txt"));
         monkeyTroop = Day11.createMonkeyTroop(monkeys);
     }
 

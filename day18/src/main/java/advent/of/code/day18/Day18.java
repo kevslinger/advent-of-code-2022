@@ -1,17 +1,19 @@
 package advent.of.code.day18;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoIntArrayList;
 
 class Day18 {
     private static int[][] directions = { {-1, 0, 0}, {1, 0, 0}, {0, -1, 0}, {0, 1, 0}, {0, 0, -1}, {0, 0, 1} };
     public static void main(String[] arc) {
         // TODO: Null check if resource is not found?
-        InputStream stream = Day18.class.getResourceAsStream("/day18.txt");
-        ArrayList<int[]> voxelArrs = readIntoIntArrayList(stream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day18.txt");
+        ArrayList<int[]> voxelArrs = readIntoIntArrayList(path);
         int[][][] voxels = createVoxelGrid(voxelArrs);
 
         System.out.println("The answer to part 1 is: " + countOpenSides(voxels));

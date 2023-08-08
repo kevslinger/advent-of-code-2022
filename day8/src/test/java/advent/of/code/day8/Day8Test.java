@@ -1,11 +1,13 @@
 package advent.of.code.day8;
 
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day8Test {
@@ -14,7 +16,7 @@ class Day8Test {
 
     @BeforeEach
     void setup() {
-        trees = readIntoStringListUntilEOF(Day8Test.class.getResourceAsStream("/day8_test.txt"));
+        trees = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day8_test.txt"));
         scenic = Day8.initialiseScenic(trees);
     }
 

@@ -1,16 +1,17 @@
 package advent.of.code.day23;
 
-import java.io.InputStream;
-
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day23 {
     public static void main(String[] arc) {
-        InputStream InputStream = Day23.class.getResourceAsStream("/day23.txt");
-        ArrayList<String> gridLines = readIntoStringListUntilEOF(InputStream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day23.txt");
+        ArrayList<String> gridLines = readIntoStringListUntilEOF(path);
         Elf[][] elfGrid = convertToElfGrid(gridLines);
 
         System.out.println("The answer to part 1 is " + computePart1(runSimulation(elfGrid)));

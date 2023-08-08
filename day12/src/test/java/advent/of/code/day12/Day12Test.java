@@ -1,11 +1,13 @@
 package advent.of.code.day12;
 
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day12Test {
@@ -14,7 +16,7 @@ class Day12Test {
 
     @BeforeEach
     void setup() {
-        graph = readIntoStringListUntilEOF(Day12Test.class.getResourceAsStream("/day12_test.txt"));
+        graph = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day12_test.txt"));
         contour = Day12.readGraph(graph);
     }
 

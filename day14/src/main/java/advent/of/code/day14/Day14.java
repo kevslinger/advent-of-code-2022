@@ -1,15 +1,17 @@
 package advent.of.code.day14;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day14 {
     public static void main(String[] args) {
-        InputStream stream = Day14.class.getResourceAsStream("/day14.txt");
-        ArrayList<String> pathStrings = readIntoStringListUntilEOF(stream);
-        ArrayList<Path> paths = parsePaths(pathStrings);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day14.txt");
+        ArrayList<String> pathStrings = readIntoStringListUntilEOF(path);
+        ArrayList<MovementPath> paths = parsePaths(pathStrings);
         int[] dimensions = getMatrixDims(paths);
         // Add one to Y for the sand drop, and make sure we have space on the X axis for the sand drop.
         int x = Math.max(dimensions[0], 500) + 1;
@@ -30,23 +32,23 @@ class Day14 {
         y = dimensions[1] + 3;
         x = Math.max(dimensions[0], 500) + dimensions[1];
         // Add the bottom row
-        paths.add(new Path("0," + (y - 1) + " -> " + (x - 1) + "," + (y - 1)));
+        paths.add(new MovementPath("0," + (y - 1) + " -> " + (x - 1) + "," + (y - 1)));
         maze = createMaze(y, x, paths, sandDrop);
         // Count all the sand.
         System.out.println("The answer to part 2 is " + countSand(maze));
     }
 
-    static ArrayList<Path> parsePaths(ArrayList<String> pathStrings) {
-        var paths = new ArrayList<Path>();
+    static ArrayList<MovementPath> parsePaths(ArrayList<String> pathStrings) {
+        var paths = new ArrayList<MovementPath>();
         for (String pString: pathStrings) {
-            paths.add(new Path(pString));
+            paths.add(new MovementPath(pString));
         }
         return paths;
     }
 
-    static int[] getMatrixDims(ArrayList<Path> paths) {
+    static int[] getMatrixDims(ArrayList<MovementPath> paths) {
         int[] dims = new int[2];
-        for (Path path: paths) {
+        for (MovementPath path: paths) {
             for (Coordinate coordinate: path.getCoordinates()) {
                 dims[0] = Math.max(dims[0], coordinate.x());
                 dims[1] = Math.max(dims[1], coordinate.y());
@@ -55,7 +57,7 @@ class Day14 {
         return dims;
     }
 
-    static int[][] createMaze(int y, int x, ArrayList<Path> paths, Coordinate sandDrop) {
+    static int[][] createMaze(int y, int x, ArrayList<MovementPath> paths, Coordinate sandDrop) {
         // Construct the Matrix.
         int[][] maze = new int[y][x];
         // Fill in the matrix with rock.
@@ -65,8 +67,8 @@ class Day14 {
         return maze;
     }
 
-    static int[][] addRocks(int[][] maze, ArrayList<Path> paths) {
-        for (Path path: paths) {
+    static int[][] addRocks(int[][] maze, ArrayList<MovementPath> paths) {
+        for (MovementPath path: paths) {
             ArrayList<Coordinate> coords = path.getCoordinates();
             for (int i = 0; i < coords.size() - 1; i++) {
                 for (int x = coords.get(i).x(); x <= coords.get(i+1).x(); x++) {

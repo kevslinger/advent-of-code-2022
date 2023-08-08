@@ -1,14 +1,18 @@
 package advent.of.code.day3;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day3 {
     public static void main(String[] args) {
-        ArrayList<String> rucksacks = readIntoStringListUntilEOF(Day3.class.getResourceAsStream("/day3.txt"));
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day3.txt");
+        ArrayList<String> rucksacks = readIntoStringListUntilEOF(path);
         int prioritySum = 0;
         for (String rucksack: rucksacks) {
             prioritySum += getPriority(getDuplicate(rucksack));

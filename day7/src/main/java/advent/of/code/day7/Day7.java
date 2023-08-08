@@ -1,15 +1,17 @@
 package advent.of.code.day7;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.lang.Math;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day7 {
     public static void main(String[] args) {
-        InputStream stream = Day7.class.getResourceAsStream("/day7.txt");
-        ArrayList<String> commands = readIntoStringListUntilEOF(stream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day7.txt");
+        ArrayList<String> commands = readIntoStringListUntilEOF(path);
 
         DirectoryNode root = readFileSystem(commands);
         System.out.println("The answer for part 1 is : " + getTotalSmallSizes(root));

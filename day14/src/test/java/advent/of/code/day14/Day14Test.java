@@ -1,21 +1,23 @@
 package advent.of.code.day14;
 
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day14Test {
     ArrayList<String> pathStrings;
-    ArrayList<Path> paths;
+    ArrayList<MovementPath> paths;
     int[] dimensions;
 
     @BeforeEach
     void setup() {
-        pathStrings = readIntoStringListUntilEOF(Day14Test.class.getResourceAsStream("/day14_test.txt"));
+        pathStrings = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day14_test.txt"));
         paths = Day14.parsePaths(pathStrings);
         dimensions = Day14.getMatrixDims(paths);
     }
@@ -36,7 +38,7 @@ class Day14Test {
         // + dimensions[1] because the sand could drop down and right for a max of Y steps
         int y = dimensions[1] + 3;
         int x = Math.max(dimensions[0], 500) + dimensions[1];
-        paths.add(new Path("0," + (y - 1) + " -> " + (x - 1) + "," + (y - 1)));
+        paths.add(new MovementPath("0," + (y - 1) + " -> " + (x - 1) + "," + (y - 1)));
         int[][] maze = Day14.createMaze(y, x, paths, new Coordinate(500, 0));
         assertEquals(93, Day14.countSand(maze));
     }

@@ -1,5 +1,10 @@
 package advent.of.code.parser_utils;
 
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import java.util.Queue;
 import java.util.PriorityQueue;
 import java.util.LinkedList;
@@ -12,6 +17,8 @@ import java.io.IOException;
 
 
 public class ParserUtils {
+    public final static String MAIN_RESOURCES = "src/main/resources";
+    public final static String TEST_RESOURCES = "src/test/resources";
     /**
      * Read text into an ArrayList of Strings, where each line is its own element in the array.
      * Stops at the first blank line
@@ -72,59 +79,30 @@ public class ParserUtils {
     /**
      * Read text into an ArrayList of Strings, where each line is its own element in the array.
      */
-    public static ArrayList<String> readIntoStringListUntilEOF(InputStream inputStream) {
-        BufferedReader br;
-        
-        var lines = new ArrayList<String>();
-
+    public static ArrayList<String> readIntoStringListUntilEOF(Path path) {
+        Stream<String> stream = null;
         try {
-            br = new BufferedReader(new InputStreamReader(inputStream));
-            String line = br.readLine();
-            while (line != null) {
-                if (line.length() >= 1) {
-                    lines.add(line);
-                }
-                line = br.readLine();
-                if (line == null) {
-                    break;
-                }
-            }
+            stream = Files.lines(path);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(9);
         }
-
-        return lines; 
+        // Collect all non-blank lines into a list
+        return stream.filter(e -> e.length() >= 1).collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
      * Read several lines into an Integer FIFO Queue
      */
-    public static Queue<Integer> readIntoIntQueue(InputStream inputStream) {
-        var intQueue = new LinkedList<Integer>();
-
-        BufferedReader br;
+    public static Queue<Integer> readIntoIntQueue(Path path) {
+        Stream<String> stream = null;
         try {
-            br = new BufferedReader(new InputStreamReader(inputStream));
-            int value;
-            String line = br.readLine();
-            while (line != null) {
-                while (line.length() > 0) {
-                    intQueue.offer(Integer.parseInt(line));
-                    line = br.readLine();
-                    if (line == null) {
-                        break;
-                    }
-                }
-                if (line != null) {
-                    line = br.readLine();
-                }
-            }
+            stream = Files.lines(path);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(9);
         }
-        return intQueue;
+        return stream.map(Integer::parseInt).collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -163,48 +141,37 @@ public class ParserUtils {
      * Read input string into a List of integer arrays.
      * Assumes the integer arrays are comma-separated.
      */
-    public static ArrayList<int[]> readIntoIntArrayList(InputStream inputStream) {
-        var intList = new ArrayList<int[]>();
-        String line = null;
-        BufferedReader br;
+    public static ArrayList<int[]> readIntoIntArrayList(Path path) {
+        Stream<String> stream = null;
         try {
-            br = new BufferedReader(new InputStreamReader(inputStream));
-            line = br.readLine();
-            while (line != null) {
-                if (line.length() >= 1) {
-                    String[] toks = line.split(",");
-                    var arr = new int[toks.length];
-                    for (int i = 0; i < toks.length; i++) {
-                        arr[i] = Integer.parseInt(toks[i]);
-                    }
-                    intList.add(arr);
-                }
-                line = br.readLine();
-                if (line == null) {
-                    break;
-                }
-            }
+            stream = Files.lines(path);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(9);
         }
-        return intList;
+        return stream.map(ParserUtils::helper).collect(Collectors.toCollection(ArrayList::new));
+    }
+    private static int[] helper(String line) {
+        String[] toks = line.split(",");
+        var arr = new int[toks.length];
+        for (int i = 0; i < toks.length; i++) {
+            arr[i] = Integer.parseInt(toks[i]);
+        }
+        return arr;
     }
 
     /**
-     * Read in a single line
+     * Read in a single line using a stream
      */
-    public static String readString(InputStream inputStream) {
-        String line = null;
-        BufferedReader br;
+    public static String readString(Path path) {
+        Stream<String> stream = null;
         try {
-            br = new BufferedReader(new InputStreamReader(inputStream));
-            line = br.readLine();
-            return line;
+            stream = Files.lines(path);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(9);
         }
-        return line;
+        // Collect all non-blank lines into a list
+        return stream.filter(e -> e.length() >= 1).findFirst().orElse(null);
     }
 }

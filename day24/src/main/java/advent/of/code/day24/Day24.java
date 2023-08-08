@@ -1,11 +1,13 @@
 package advent.of.code.day24;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day24 {
@@ -18,8 +20,8 @@ class Day24 {
     private static final int[] DIRECTIONS = new int[] { Day24.EAST, Day24.WEST, Day24.SOUTH, Day24.NORTH }; // Must go from largest to smallest value
 
     public static void main(String[] args) {
-        InputStream inputStream = Day24.class.getResourceAsStream("/day24.txt");
-        ArrayList<String> gridStrings = readIntoStringListUntilEOF(inputStream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day24.txt");
+        ArrayList<String> gridStrings = readIntoStringListUntilEOF(path);
         var blizzardMap = new HashMap<Integer, int[][]>();
         blizzardMap.put(0, createInitialGrid(gridStrings));
 

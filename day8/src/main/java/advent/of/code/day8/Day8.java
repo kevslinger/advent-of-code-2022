@@ -1,16 +1,18 @@
 package advent.of.code.day8;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.ArrayList;
 import java.lang.Math;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day8 {
     public static void main(String[] args) {
-        InputStream stream = Day8.class.getResourceAsStream("/day8.txt");
-        ArrayList<String> trees = readIntoStringListUntilEOF(stream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day8.txt");
+        ArrayList<String> trees = readIntoStringListUntilEOF(path);
 
         int[][] scenic = initialiseScenic(trees);
         

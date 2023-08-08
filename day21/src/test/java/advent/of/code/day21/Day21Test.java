@@ -1,5 +1,7 @@
 package advent.of.code.day21;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.HashMap;
@@ -9,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day21Test {
@@ -16,7 +19,7 @@ class Day21Test {
 
     @BeforeEach
     void setup() {
-        ArrayList<String> monkeyStrings = readIntoStringListUntilEOF(Day21Test.class.getResourceAsStream("/day21_test.txt"));
+        ArrayList<String> monkeyStrings = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day21_test.txt"));
         monkeyYells = Day21.convertToMonkeyYells(monkeyStrings);
     }
 

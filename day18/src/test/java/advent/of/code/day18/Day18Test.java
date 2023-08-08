@@ -1,11 +1,13 @@
 package advent.of.code.day18;
 
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoIntArrayList;
 
 class Day18Test {
@@ -13,7 +15,7 @@ class Day18Test {
 
     @BeforeEach
     void setup() {
-        ArrayList<int[]> voxelArrs = readIntoIntArrayList(Day18Test.class.getResourceAsStream("/day18_test.txt"));
+        ArrayList<int[]> voxelArrs = readIntoIntArrayList(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day18_test.txt"));
         voxels = Day18.createVoxelGrid(voxelArrs);
     }
 

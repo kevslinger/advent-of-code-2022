@@ -1,17 +1,19 @@
 package advent.of.code.day9;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.lang.Math;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day9 {
     public static void main(String[] args) {
-        InputStream stream = Day9.class.getResourceAsStream("/day9.txt");
-        ArrayList<String> motions = readIntoStringListUntilEOF(stream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day9.txt");
+        ArrayList<String> motions = readIntoStringListUntilEOF(path);
 
         // TODO: I could keep track of unique positions for all heads and then only need to run this simulation once.
         System.out.println("Answer to part 1: " + getUniquePositions(motions, 2).size());

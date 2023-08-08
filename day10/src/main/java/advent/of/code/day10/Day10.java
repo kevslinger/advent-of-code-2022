@@ -1,14 +1,16 @@
 package advent.of.code.day10;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day10 {
     public static void main(String[] args) {
-        InputStream stream = Day10.class.getResourceAsStream("/day10.txt");
-        ArrayList<String> instructions = readIntoStringListUntilEOF(stream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day10.txt");
+        ArrayList<String> instructions = readIntoStringListUntilEOF(path);
     
         System.out.println("Answer to part 1: " + getSignalStrength(instructions));
         System.out.println("Answer to part 2: ");

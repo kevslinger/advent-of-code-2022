@@ -1,18 +1,20 @@
 package advent.of.code.day21;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.math.BigInteger;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day21 {
     static final String OURNAME = "humn"; // Us for part 2
     public static void main(String[] args) {
-        InputStream inputStream = Day21.class.getResourceAsStream("/day21.txt");
-        ArrayList<String> monkeyStrings = readIntoStringListUntilEOF(inputStream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day21.txt");
+        ArrayList<String> monkeyStrings = readIntoStringListUntilEOF(path);
         var monkeyYells = convertToMonkeyYells(monkeyStrings);
 
         var monkeyMap = createMonkeyHashMap((LinkedList<YellerMonkey>)monkeyYells.clone());

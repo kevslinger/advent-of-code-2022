@@ -1,15 +1,17 @@
 package advent.of.code.day13;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.ArrayList;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day13 {
     public static void main(String[] args) {
-        InputStream stream = Day13.class.getResourceAsStream("/day13.txt");
-        ArrayList<String> packetStrings = readIntoStringListUntilEOF(stream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day13.txt");
+        ArrayList<String> packetStrings = readIntoStringListUntilEOF(path);
         var packets = new ArrayList<Packet>();
         for (int i = 0; i < packetStrings.size(); i++) {
             packets.add(new Packet(packetStrings.get(i)));

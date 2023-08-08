@@ -1,5 +1,6 @@
 package advent.of.code.day24;
 
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day24Test {
@@ -18,7 +20,7 @@ class Day24Test {
 
     @BeforeEach
     void setup() {
-        ArrayList<String> gridStrings = readIntoStringListUntilEOF(Day24Test.class.getResourceAsStream("/day24_test.txt"));
+        ArrayList<String> gridStrings = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day24_test.txt"));
         blizzardMap = new HashMap<Integer, int[][]>();
         blizzardMap.put(0, Day24.createInitialGrid(gridStrings));
         int[][] initialMap = blizzardMap.get(0);

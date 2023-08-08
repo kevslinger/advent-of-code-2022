@@ -1,14 +1,16 @@
 package advent.of.code.day12;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day12 {
     public static void main(String[] args) {
-        InputStream stream = Day12.class.getResourceAsStream("/day12.txt");
-        ArrayList<String> graph = readIntoStringListUntilEOF(stream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day12.txt");
+        ArrayList<String> graph = readIntoStringListUntilEOF(path);
         Contour contour = readGraph(graph);
 
         FunctionalInterface part1Function = (int row, int col) -> { return row == contour.getStartRow() && col == contour.getStartCol(); };

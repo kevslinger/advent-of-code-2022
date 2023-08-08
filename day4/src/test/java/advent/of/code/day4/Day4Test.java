@@ -1,11 +1,13 @@
 package advent.of.code.day4;
 
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day4Test {
@@ -13,7 +15,7 @@ class Day4Test {
 
     @BeforeEach
     void setup() {
-        sections = readIntoStringListUntilEOF(Day4Test.class.getResourceAsStream("/day4_test.txt"));
+        sections = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day4_test.txt"));
     }
 
     @Test

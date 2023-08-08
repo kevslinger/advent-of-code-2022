@@ -2,10 +2,10 @@ package advent.of.code.day14;
 
 import java.util.ArrayList;
 
-public class Path {
+public class MovementPath {
     private ArrayList<Coordinate> coordinates;
 
-    public Path(String pathString) {
+    public MovementPath(String pathString) {
         coordinates = new ArrayList<Coordinate>();
         // Format of a path string: X1,Y1 -> X2,Y2 -> ...
         String[] toks = pathString.split(" -> ");

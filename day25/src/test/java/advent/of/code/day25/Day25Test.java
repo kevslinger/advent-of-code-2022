@@ -1,5 +1,7 @@
 package advent.of.code.day25;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.math.BigInteger;
 
@@ -7,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day25Test {
@@ -14,7 +17,7 @@ class Day25Test {
 
     @BeforeEach
     void setup() {
-        snafuStrings = readIntoStringListUntilEOF(Day25Test.class.getResourceAsStream("/day25_test.txt"));
+        snafuStrings = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day25_test.txt"));
     }
 
     @Test

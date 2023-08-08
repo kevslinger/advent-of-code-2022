@@ -1,11 +1,13 @@
 package advent.of.code.day3;
 
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 public class Day3Test {
@@ -13,7 +15,7 @@ public class Day3Test {
 
     @BeforeEach
     void setup() {
-        rucksacks = readIntoStringListUntilEOF(Day3Test.class.getResourceAsStream("/day3_test.txt"));
+        rucksacks = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day3_test.txt"));
     }
 
     @Test

@@ -1,11 +1,13 @@
 package advent.of.code.day15;
 
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day15Test {
@@ -14,7 +16,7 @@ class Day15Test {
 
     @BeforeEach
     void setup() {
-        sensorStrings = readIntoStringListUntilEOF(Day15Test.class.getResourceAsStream("/day15_test.txt"));
+        sensorStrings = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day15_test.txt"));
         tunnels = new TunnelSystem(sensorStrings);
     }
 

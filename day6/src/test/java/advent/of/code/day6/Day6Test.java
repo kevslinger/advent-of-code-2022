@@ -1,11 +1,12 @@
 package advent.of.code.day6;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readString;
 
 public class Day6Test {
@@ -13,7 +14,7 @@ public class Day6Test {
 
     @BeforeEach
     public void setup() {
-        signals = readString(Day6Test.class.getResourceAsStream("/day6_test.txt"));
+        signals = readString(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day6_test.txt"));
     }
 
     @Test

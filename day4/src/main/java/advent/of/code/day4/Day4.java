@@ -1,12 +1,16 @@
 package advent.of.code.day4;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day4 {
     public static void main(String[] args) {
-        ArrayList<String> sections = readIntoStringListUntilEOF(Day4.class.getResourceAsStream("/day4.txt"));
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day4.txt");
+        ArrayList<String> sections = readIntoStringListUntilEOF(path);
         int counter = 0, counter2 = 0;
         for (String elf: sections) {
             String[] elves = elf.split(",");

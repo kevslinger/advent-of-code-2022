@@ -1,8 +1,11 @@
 package advent.of.code.day2;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.ArrayList;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day2 {
@@ -19,7 +22,8 @@ class Day2 {
     private static final int LOSSPTS = 0;
 
     public static void main(String[] args) {
-        List<String> game = readIntoStringListUntilEOF(Day2.class.getResourceAsStream("/day2.txt"));
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day2.txt");
+        List<String> game = readIntoStringListUntilEOF(path);
         int score = calculateScore(game);
         System.out.println("Score in part 1: " + score);
         int score2 = calculateScore(pickMoves(game));

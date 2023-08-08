@@ -1,16 +1,18 @@
 package advent.of.code.day11;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Arrays;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day11 {
     public static void main(String[] args) {
-        InputStream stream = Day11.class.getResourceAsStream("/day11.txt");
-        ArrayList<String> monkeys = readIntoStringListUntilEOF(stream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day11.txt");
+        ArrayList<String> monkeys = readIntoStringListUntilEOF(path);
         MonkeyTroop monkeyTroop = createMonkeyTroop(monkeys);
 
         long[] inspections = monkeyTroop.simulateMonkeys(20, 3);

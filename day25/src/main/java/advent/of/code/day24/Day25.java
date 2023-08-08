@@ -1,16 +1,18 @@
 package advent.of.code.day25;
 
-import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.math.BigInteger;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day25 {
     public static void main(String[] args) {
-        InputStream inputStream = Day25.class.getResourceAsStream("/day25.txt");
-        ArrayList<String> snafuStrings = readIntoStringListUntilEOF(inputStream);
+        Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day25.txt");
+        ArrayList<String> snafuStrings = readIntoStringListUntilEOF(path);
 
         ArrayList<BigInteger> snafuIntegers = convertSnafuListToDecimalList(snafuStrings);
 
@@ -65,7 +67,6 @@ class Day25 {
             } else {
                 flipValues.add(flipValues.get(largestPower-1).add(FIVE.pow(largestPower).multiply(TWO)));
             }
-            System.out.println("Power is " + largestPower + " and flip value is " + flipValues.get(largestPower));
             largestPower++;
         }
         // Check if the number is larger than the flip value

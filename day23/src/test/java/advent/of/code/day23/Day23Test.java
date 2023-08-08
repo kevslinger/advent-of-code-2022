@@ -1,18 +1,20 @@
 package advent.of.code.day23;
 
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
 
 class Day23Test {
     private Elf[][] elfGrid;
     @BeforeEach
     void setup() {
-        ArrayList<String> gridLines = readIntoStringListUntilEOF(Day23Test.class.getResourceAsStream("/day23_test.txt"));
+        ArrayList<String> gridLines = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day23_test.txt"));
         elfGrid = Day23.convertToElfGrid(gridLines);
     }
 
