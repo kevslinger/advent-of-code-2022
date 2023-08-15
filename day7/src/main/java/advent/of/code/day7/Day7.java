@@ -76,19 +76,16 @@ class Day7 {
         if (rootSize <= 100000) {
             totalSizes += rootSize;
         }
-        for (DirectoryNode child: root.getChildren()) {
-            totalSizes += getTotalSmallSizes(child);
-        }
+        // Sum up sizes of all children
+        totalSizes += root.getChildren().stream().mapToInt(Day7::getTotalSmallSizes).sum();
         return totalSizes;
     }
 
     static int getDirToDeleteSize(DirectoryNode root, int sizeNeeded, int minSizeToDelete) {
         int rootSize = root.getSize();
         if (rootSize >= sizeNeeded) {
-            minSizeToDelete = Math.min(minSizeToDelete, rootSize);
-            for (DirectoryNode child: root.getChildren()) {
-                minSizeToDelete = getDirToDeleteSize(child, sizeNeeded, minSizeToDelete);
-            }
+            int tmpMinSize = Math.min(minSizeToDelete, rootSize);
+            minSizeToDelete = Math.min(tmpMinSize, root.getChildren().stream().mapToInt(child -> getDirToDeleteSize(child, sizeNeeded, tmpMinSize)).min().orElse(tmpMinSize));
         }
         return minSizeToDelete;
     }

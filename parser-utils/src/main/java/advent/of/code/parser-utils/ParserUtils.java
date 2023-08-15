@@ -107,6 +107,7 @@ public class ParserUtils {
 
     /**
      * Read Calories in for Part 1
+     * TODO: Can this be done with a stream?
      */
     public static Queue<Integer> readIntoCalorieQueue(InputStream inputStream) {
         var calorieCounts = new PriorityQueue<Integer>();

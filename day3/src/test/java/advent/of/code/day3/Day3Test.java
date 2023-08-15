@@ -20,10 +20,7 @@ public class Day3Test {
 
     @Test
     void testPart1() {
-        int prioritySum = 0;
-        for (String rucksack: rucksacks) {
-            prioritySum += Day3.getPriority(Day3.getDuplicate(rucksack));
-        }
+        int prioritySum = rucksacks.stream().map(Day3::getDuplicate).mapToInt(Day3::getPriority).sum();
         assertEquals(157, prioritySum);
     }
 

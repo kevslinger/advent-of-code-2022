@@ -20,11 +20,11 @@ class Day2Test {
 
     @Test
     void testPart1() {
-        assertEquals(15, Day2.calculateScore(game));
+        assertEquals(15, Day2.calculateGameScore(game));
     }
 
     @Test
     void testPart2() {
-        assertEquals(12, Day2.calculateScore(Day2.pickMoves(game)));
+        assertEquals(12, Day2.calculateGameScore(Day2.pickMoves(game)));
     }
 }

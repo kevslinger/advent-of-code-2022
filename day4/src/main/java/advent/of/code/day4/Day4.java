@@ -2,7 +2,7 @@ package advent.of.code.day4;
 
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.List;
 
 import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
@@ -10,13 +10,18 @@ import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF
 class Day4 {
     public static void main(String[] args) {
         Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day4.txt");
-        ArrayList<String> sections = readIntoStringListUntilEOF(path);
+        List<String> sections = readIntoStringListUntilEOF(path);
         int counter = 0, counter2 = 0;
         for (String elf: sections) {
             String[] elves = elf.split(",");
             int[] elf1 = parseElf(elves[0]), elf2 = parseElf(elves[1]);
-            counter += checkIfContained(elf1, elf2) ? 1 : 0;
-            counter2 += checkIfOverlap(elf1, elf2) ? 1: 0;
+            // If fully contained, then it also overlaps.
+            if (checkIfContained(elf1, elf2)) {
+                counter++;
+                counter2++;
+            } else if (checkIfOverlap(elf1, elf2)) {
+                counter2++;
+            }
         }
         System.out.println("Answer for part 1: " + counter);
         System.out.println("Answer for part 2: " + counter2);

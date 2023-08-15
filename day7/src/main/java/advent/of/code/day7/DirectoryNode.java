@@ -37,14 +37,7 @@ class DirectoryNode {
     }
 
     public int getSize() {
-        int size = 0;
-        for (File f: files) {
-            size += f.size();
-        }
-        for (DirectoryNode dir: childDirs) {
-            size += dir.getSize();
-        }
-        return size;
+        return files.stream().mapToInt(File::size).sum() + childDirs.stream().mapToInt(DirectoryNode::getSize).sum();
     }
 
     public String getName() {

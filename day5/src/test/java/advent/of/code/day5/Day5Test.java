@@ -1,8 +1,10 @@
 package advent.of.code.day5;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.io.InputStream;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,24 +32,16 @@ class Day5Test {
     void testPart1() {
         ArrayList<LinkedList<Character>> crates = Day5.followInstructions(Day5.parseRawCrates(raw_crates), instructions);
 
-        var str = new StringBuilder();
-        for (int i = 0; i < crates.size(); i++) {
-            if (crates.get(i).size() > 0) {
-                str.append(crates.get(i).peek());
-            }
-        }
-        assertEquals("CMZ", str.toString());
+        String str = crates.stream().map(Day5::peekAtChar).filter(Objects::nonNull).map(c -> c.toString()).collect(Collectors.joining(""));
+
+        assertEquals("CMZ", str);
     }
 
     @Test 
     void testPart2() {
         ArrayList<LinkedList<Character>> crates = Day5.followInstructionsPart2(Day5.parseRawCrates(raw_crates), instructions);
-        var str = new StringBuilder();
-        for (int i = 0; i < crates.size(); i++) {
-            if (crates.get(i).size() > 0) {
-                str.append(crates.get(i).peek());
-            }
-        }
+        String str = crates.stream().map(Day5::peekAtChar).filter(Objects::nonNull).map(c -> c.toString()).collect(Collectors.joining(""));
+
         assertEquals("MCD", str.toString());
     }
 }

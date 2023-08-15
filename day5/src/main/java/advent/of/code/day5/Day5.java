@@ -4,6 +4,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Stack;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Objects;
 
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilBlankLine;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListButSkipFirstSet;
@@ -20,22 +23,20 @@ class Day5 {
         ArrayList<LinkedList<Character>> crates = followInstructions(parseRawCrates(raw_crates), instructions);
 
         System.out.print("Answer for part 1: ");
-        for (int i = 0; i < crates.size(); i++) {
-            if (crates.get(i).size() > 0) {
-                System.out.print(crates.get(i).peek());
-            }
-        }
+        System.out.println(crates.stream().map(Day5::peekAtChar).filter(Objects::nonNull).map(c -> c.toString()).collect(Collectors.joining("")));
         System.out.println();
 
         crates = followInstructionsPart2(parseRawCrates(raw_crates), instructions);
         System.out.print("Answer for part 2: ");
-        for (int i = 0; i < crates.size(); i++) {
-            if (crates.get(i).size() > 0) {
-                System.out.print(crates.get(i).peek());
-            }
-        }
-        System.out.println();
+        System.out.println(crates.stream().map(Day5::peekAtChar).filter(Objects::nonNull).map(c -> c.toString()).collect(Collectors.joining("")));
+    }
 
+    static Character peekAtChar(LinkedList<Character> crate) {
+        if (crate.size() > 0) { 
+            return crate.peek();
+        } else { 
+            return null; 
+        }
     }
 
     static ArrayList<LinkedList<Character>> parseRawCrates(ArrayList<String> raw_crates) {
