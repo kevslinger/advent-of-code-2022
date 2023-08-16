@@ -17,9 +17,7 @@ record Monkey (
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("Monkey " + id + ": ");
-        for (Long item : startItems) {
-            str.append(item + ", ");
-        }
+        startItems.stream().forEach(item -> str.append(item + ", "));
         str.append(operation.toString() + ", test: divisible by " + test + ", to " + trueMonkey + " if true and " + falseMonkey + " otherwise.\n");
         return str.toString();
     }

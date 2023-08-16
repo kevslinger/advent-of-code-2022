@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Arrays;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
@@ -43,10 +45,7 @@ class Day11 {
             int monkeyId = Integer.parseInt(monkeyIdToks[1].substring(0, monkeyIdToks[1].length() - 1));
             // Starting items
             String[] monkeyStartingItemsToks = monkeys.get(idx++).replaceAll("\\s+", "").split(":")[1].split(","); 
-            var startingItems = new LinkedList<Long>();
-            for (String item : monkeyStartingItemsToks) {
-                startingItems.add(Long.parseLong(item));
-            }
+            LinkedList<Long> startingItems = Stream.of(monkeyStartingItemsToks).map(Long::parseLong).collect(Collectors.toCollection(LinkedList::new));
             // Operation
             MonkeyOp operation = new MonkeyOp(monkeys.get(idx++));
             // Test

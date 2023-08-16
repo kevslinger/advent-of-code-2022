@@ -2,6 +2,7 @@ package advent.of.code.day11;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 class MonkeyTroop {
     private List<Monkey> monkeys;
@@ -19,21 +20,25 @@ class MonkeyTroop {
         int leastCommonTest = getLeastCommonTest();
         for (int round = 0 ; round < rounds; round++) {
             for (Monkey monkey : monkeys) {
-                int itemSize = monkey.startItems().size();
-                for (int i = 0; i < itemSize; i++) {
-                    // Get the item, divide by 3, perform operation
-                    long worry = monkey.operation().performOp(monkey.startItems().poll()) / worryDivider;
-                    if (worry % monkey.test() == 0) {
-                        monkeys.get(monkey.trueMonkey()).startItems().add(worry % leastCommonTest);
-                    } else {
-                        monkeys.get(monkey.falseMonkey()).startItems().add(worry % leastCommonTest);
-                    }
-                    // Logging
-                    inspects[monkey.id()]++;
-                }
+                int numItems = monkey.startItems().size();
+                throwItems(monkey, numItems, worryDivider, leastCommonTest);
+                // Keep track of how many inspections the monkey did.
+                inspects[monkey.id()] += numItems;
             }
         }
         return inspects;
+    }
+
+    void throwItems(Monkey monkey, int numItems, int worryDivider, int leastCommonTest) {
+        for (int i = 0; i < numItems; i++) {
+            // Get the item, divide by worryDivider, perform operation
+            long worry = monkey.operation().performOp(monkey.startItems().poll()) / worryDivider;
+            if (worry % monkey.test() == 0) {
+                monkeys.get(monkey.trueMonkey()).startItems().add(worry % leastCommonTest);
+            } else {
+                monkeys.get(monkey.falseMonkey()).startItems().add(worry % leastCommonTest);
+            }
+        }
     }
 
     List<Monkey> getMonkeys() {
@@ -62,10 +67,6 @@ class MonkeyTroop {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        for (Monkey monkey : monkeys) {
-            str.append(monkey.toString());
-        }
-        return str.toString();
+        return monkeys.stream().map(Monkey::toString).collect(Collectors.joining("")).toString();
     }
 }

@@ -3,6 +3,7 @@ package advent.of.code.day14;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
@@ -11,7 +12,7 @@ class Day14 {
     public static void main(String[] args) {
         Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day14.txt");
         ArrayList<String> pathStrings = readIntoStringListUntilEOF(path);
-        ArrayList<MovementPath> paths = parsePaths(pathStrings);
+        ArrayList<MovementPath> paths = pathStrings.stream().map(pString -> new MovementPath(pString)).collect(Collectors.toCollection(ArrayList::new));
         int[] dimensions = getMatrixDims(paths);
         // Add one to Y for the sand drop, and make sure we have space on the X axis for the sand drop.
         int x = Math.max(dimensions[0], 500) + 1;
@@ -36,14 +37,6 @@ class Day14 {
         maze = createMaze(y, x, paths, sandDrop);
         // Count all the sand.
         System.out.println("The answer to part 2 is " + countSand(maze));
-    }
-
-    static ArrayList<MovementPath> parsePaths(ArrayList<String> pathStrings) {
-        var paths = new ArrayList<MovementPath>();
-        for (String pString: pathStrings) {
-            paths.add(new MovementPath(pString));
-        }
-        return paths;
     }
 
     static int[] getMatrixDims(ArrayList<MovementPath> paths) {
