@@ -178,7 +178,6 @@ class Day22 {
         Position curPosition = new Position(0, 0, 0, 1);
         // Then, iterate through all the instructions.
         for (String instruction : instructionList) {
-            System.out.println(curPosition);
             switch (instruction) {
                 case "L" -> { curPosition.rotate(-1); }
                 case "R" -> { curPosition.rotate(1); }
@@ -198,7 +197,6 @@ class Day22 {
         return curPosition;
     }
     // TODO: Duplicate with the original
-    // Fuck me
     static Position findNextOpenPositionCube(Cube cube, Position curPosition) {
         int row = curPosition.getRow();
         int column = curPosition.getColumn();

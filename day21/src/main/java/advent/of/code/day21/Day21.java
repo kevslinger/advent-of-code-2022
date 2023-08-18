@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.math.BigInteger;
+import java.util.stream.Collectors;
 
 import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
@@ -25,11 +26,7 @@ class Day21 {
     }
 
     static LinkedList<YellerMonkey> convertToMonkeyYells(ArrayList<String> monkeyStrings) {
-        var monkeyYells = new LinkedList<YellerMonkey>();
-        for (String monkey : monkeyStrings) {
-            monkeyYells.add(new YellerMonkey(monkey));
-        }
-        return monkeyYells;
+        return monkeyStrings.stream().map(YellerMonkey::new).collect(Collectors.toCollection(LinkedList::new));
     }
 
     static HashMap<String, BigInteger> createMonkeyHashMap(LinkedList<YellerMonkey> monkeyYells) {

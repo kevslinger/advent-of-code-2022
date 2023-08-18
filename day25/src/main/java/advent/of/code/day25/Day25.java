@@ -4,7 +4,8 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.math.BigInteger;
+import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 import advent.of.code.parser_utils.ParserUtils;
 import static advent.of.code.parser_utils.ParserUtils.readIntoStringListUntilEOF;
@@ -14,25 +15,16 @@ class Day25 {
         Path path = FileSystems.getDefault().getPath(ParserUtils.MAIN_RESOURCES, "day25.txt");
         ArrayList<String> snafuStrings = readIntoStringListUntilEOF(path);
 
-        ArrayList<BigInteger> snafuIntegers = convertSnafuListToDecimalList(snafuStrings);
-
-        BigInteger snafuSum = BigInteger.ZERO;
-        for (BigInteger snafuInteger : snafuIntegers) {
-            snafuSum = snafuSum.add(snafuInteger);
-        }
-        
+        ArrayList<Long> snafuIntegers = convertSnafuListToDecimalList(snafuStrings);
+        long snafuSum = snafuIntegers.stream().mapToLong(i -> i).sum();
         System.out.println("The answer to part 1 is " + convertDecimalToSnafu(snafuSum));
     }
 
-    static ArrayList<BigInteger> convertSnafuListToDecimalList(ArrayList<String> snafuStrings) {
-        var snafuIntegers = new ArrayList<BigInteger>();
-        for (String snafuString : snafuStrings) {
-            snafuIntegers.add(convertSnafuToDecimal(snafuString));
-        }
-        return snafuIntegers;
+    static ArrayList<Long> convertSnafuListToDecimalList(ArrayList<String> snafuStrings) {
+        return snafuStrings.stream().map(Day25::convertSnafuToDecimal).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    static BigInteger convertSnafuToDecimal(String snafuString) {
+    static Long convertSnafuToDecimal(String snafuString) {
         // Create a simple lookup table to translate characters
         var snafuMap = new HashMap<Character, Integer>();
         snafuMap.put('=', -2);
@@ -41,38 +33,38 @@ class Day25 {
         snafuMap.put('1', 1);
         snafuMap.put('2', 2);
 
-        BigInteger decimalVal = BigInteger.ZERO;
-        for (int i = 0; i < snafuString.length(); i++) {
-            decimalVal = decimalVal.add(BigInteger.valueOf(snafuMap.get(snafuString.charAt(i)) * (long)Math.pow(5, snafuString.length() - 1 - i)));
-        }
+        //BigInteger decimalVal = BigInteger.ZERO;
+        Long decimalVal = IntStream.range(0, snafuString.length())
+                 .mapToLong(i -> snafuMap.get(snafuString.charAt(i)) * (long)Math.pow(5, snafuString.length() - 1 - i))
+                 .sum();
         return decimalVal;
     }
 
-    static String convertDecimalToSnafu(BigInteger snafuSum) {
+    static String convertDecimalToSnafu(long snafuSum) {
         // Return value that we'll build through this function
         StringBuilder snafuString = new StringBuilder();
         // Constants
-        final BigInteger FIVE = BigInteger.valueOf(5);
-        final BigInteger TWO = BigInteger.valueOf(2);
+        final long FIVE = 5L;
+        final long TWO = 2L;
         // Step 1: Figure out largest power
         int largestPower = 0;
         boolean flip = false; // Flag for flipping the characters.
         boolean nextFlip = false;
         
-        var flipValues = new ArrayList<BigInteger>();
+        var flipValues = new ArrayList<Long>();
         // The post-increment allows us to go 1 larger than the biggest power, which is what we want
-        while (FIVE.pow(largestPower).compareTo(snafuSum) < 0) {
+        while (pow(5, largestPower) < snafuSum) {
             if (flipValues.size() == 0) {
                 flipValues.add(TWO);
             } else {
-                flipValues.add(flipValues.get(largestPower-1).add(FIVE.pow(largestPower).multiply(TWO)));
+                flipValues.add(flipValues.get(largestPower-1) + pow(FIVE, largestPower) * TWO);
             }
             largestPower++;
         }
         // Check if the number is larger than the flip value
-        if (snafuSum.compareTo(flipValues.get(largestPower-1)) > 0) {
+        if (snafuSum > flipValues.get(largestPower-1)) {
             snafuString.append("1");
-            snafuSum = FIVE.pow(largestPower).subtract(snafuSum);
+            snafuSum = pow(FIVE, largestPower) - snafuSum;
             flip = true; // Need to flip the characters except the first.
         }
         // Push largestPower back to where it should be.
@@ -80,20 +72,21 @@ class Day25 {
 
         // At this point we should be below the flip value,
         // Which means we can go straight down the power list
-        while (!snafuSum.equals(BigInteger.ZERO)) {
+        while (snafuSum != 0) {
             // Check current power
-            BigInteger divideResult = snafuSum.divide(FIVE.pow(largestPower));
+            long divideResult = snafuSum / pow(FIVE, largestPower);
+            System.out.println(divideResult);
             // Our largest digit in SNAFU is 2 so we need to clip the result to 2.
-            if (divideResult.compareTo(TWO) > 0) {
+            if (divideResult > TWO) {
                 divideResult = TWO;
             // Check if we need to flip next value
-            } else if (largestPower > 0 && snafuSum.subtract(FIVE.pow(largestPower).multiply(divideResult)).compareTo(flipValues.get(largestPower - 1)) > 0){
-                divideResult = divideResult.add(BigInteger.ONE);
+            } else if (largestPower > 0 && snafuSum - pow(FIVE, largestPower) * divideResult > flipValues.get(largestPower - 1)) {
+                divideResult = divideResult + 1L;
                 nextFlip = !flip;
             }
             // Check next power against flip value.
             if (flip) {
-                switch (divideResult.intValue()) {
+                switch ((int)divideResult) {
                     case 0 -> {
                         snafuString.append("0");
                     }
@@ -105,11 +98,11 @@ class Day25 {
                     }
                 }
             } else {
-                snafuString.append(divideResult.toString());
+                snafuString.append("" + divideResult);
             }
             // We are able to use the absolute values because we are flipping the characters as needed.
             // Otherwise the math is more complicated.
-            snafuSum = snafuSum.subtract(FIVE.pow(largestPower).multiply(divideResult)).abs();
+            snafuSum = Math.abs(snafuSum - pow(FIVE, largestPower) * divideResult);
             largestPower--;
             flip = nextFlip;
         }
@@ -118,5 +111,9 @@ class Day25 {
             snafuString.append("0");
         }
         return snafuString.toString();
+    }
+
+    static long pow(long a, long b) {
+        return (long)Math.pow(a, b);
     }
 }

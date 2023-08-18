@@ -3,7 +3,6 @@ package advent.of.code.day25;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.math.BigInteger;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,18 +21,11 @@ class Day25Test {
 
     @Test
     void testPart1() {
-        ArrayList<BigInteger> snafuIntegers = Day25.convertSnafuListToDecimalList(snafuStrings);
-        BigInteger snafuSum = BigInteger.ZERO;
-        for (BigInteger snafuInteger : snafuIntegers) {
-            snafuSum = snafuSum.add(snafuInteger);
-        }
+        ArrayList<Long> snafuIntegers = Day25.convertSnafuListToDecimalList(snafuStrings);
+        long snafuSum = snafuIntegers.stream().mapToLong(i -> i).sum();
         // Check that our SNAFU -> Integer parsing is correct
-        assertEquals(4890, snafuSum.intValue());
+        assertEquals(4890, snafuSum);//snafuSum.intValue());
         // Check that our Integer -> SNAFU parsing is correct
         assertEquals("2=-1=0", Day25.convertDecimalToSnafu(snafuSum));
     }
-
-    // @Test
-    // void testPart2() {
-    // }
 }
