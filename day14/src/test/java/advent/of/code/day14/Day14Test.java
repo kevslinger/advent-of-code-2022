@@ -2,6 +2,7 @@ package advent.of.code.day14;
 
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ class Day14Test {
     @BeforeEach
     void setup() {
         pathStrings = readIntoStringListUntilEOF(FileSystems.getDefault().getPath(ParserUtils.TEST_RESOURCES, "day14_test.txt"));
-        paths = Day14.parsePaths(pathStrings);
+        paths = pathStrings.stream().map(pString -> new MovementPath(pString)).collect(Collectors.toCollection(ArrayList::new));
         dimensions = Day14.getMatrixDims(paths);
     }
 

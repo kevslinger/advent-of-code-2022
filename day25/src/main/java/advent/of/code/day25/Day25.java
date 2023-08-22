@@ -75,7 +75,6 @@ class Day25 {
         while (snafuSum != 0) {
             // Check current power
             long divideResult = snafuSum / pow(FIVE, largestPower);
-            System.out.println(divideResult);
             // Our largest digit in SNAFU is 2 so we need to clip the result to 2.
             if (divideResult > TWO) {
                 divideResult = TWO;
